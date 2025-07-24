@@ -183,14 +183,13 @@ document.addEventListener("click", (e) => {
 
 
     if (deleteCardButton) {
-        const cardToDelete = click.closest("[data-type='card']");
-        const cardToDeleteId = Number(cardToDelete.id);
-        cardsToDelete.push(cardToDelete);
-        cardToDeleteIds.push(cardToDeleteId);
-
         const confirmDelete = confirm("¿Estás seguro de eliminar esta tarjeta? Esta accion no puede deshacerse");
 
         if (confirmDelete) {
+            const cardToDelete = click.closest("[data-type='card']");
+            const cardToDeleteId = Number(cardToDelete.id);
+            cardsToDelete.push(cardToDelete);
+            cardToDeleteIds.push(cardToDeleteId);
             cardToDelete.remove();
             updateCardsEmptyMessage();
         };
