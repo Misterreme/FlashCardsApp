@@ -352,13 +352,13 @@ function loadSets() {
                         <div class="flex gap-4" data-type="edit-delete-container">
                             <div class="p-2 rounded-xl group hover:bg-blue-50">
                                 <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-blue-500" data-type="edit-button" width="16px" height="16px">
-                                    <use xlink:href="/public/icons/sprite.svg#icon-edit"></use>
+                                    <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-edit"></use>
                                 </svg>
                             </div>
 
                             <div class="p-2 rounded-xl group hover:bg-red-50">
                                 <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-red-500" data-type="delete-button" width="16px" height="16px">
-                                    <use xlink:href="/public/icons/sprite.svg#icon-delete"></use>
+                                    <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-delete"></use>
                                 </svg>
                             </div>
                         </div>
@@ -369,14 +369,14 @@ function loadSets() {
                     <div class="w-[75%] flex items-center gap-6 mb-5">
                         <div class="flex items-center gap-1">
                             <svg class="icon" width="16px" height="16px">
-                                <use xlink:href="/public/icons/sprite.svg#icon-book"></use>
+                                <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-book"></use>
                             </svg>
                             <p class="text-gray-500">${setCard.length} tarjetas</p>
                         </div>
     
                         <div class="flex items-center gap-1">
                             <svg class="icon" width="16px" height="16px">
-                                <use xlink:href="/public/icons/sprite.svg#icon-calendar"></use>
+                                <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-calendar"></use>
                             </svg>
                             <p class="text-gray-500">${set.date}</p>
                         </div>
@@ -452,14 +452,14 @@ function createCard() {
     
                 <div class="flex gap-4" data-type="edit-delete-container">
                     <div class="p-2 rounded-xl group hover:bg-blue-50">
-                        <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-blue-500" data-type="edit-card-button" width="16px" height="16px">
-                            <use xlink:href="/public/icons/sprite.svg#icon-edit"></use>
+                        <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-blue-500" data-type="edit-button" width="16px" height="16px">
+                            <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-edit"></use>
                         </svg>
                     </div>
-    
+
                     <div class="p-2 rounded-xl group hover:bg-red-50">
-                        <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-red-500" data-type="delete-card-button" width="16px" height="16px">
-                            <use xlink:href="/public/icons/sprite.svg#icon-delete"></use>
+                        <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-red-500" data-type="delete-button" width="16px" height="16px">
+                            <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-delete"></use>
                         </svg>
                     </div>
                 </div>
@@ -535,14 +535,14 @@ function loadCards(setId) {
 
                     <div class="flex gap-4" data-type="edit-delete-container">
                         <div class="p-2 rounded-xl group hover:bg-blue-50">
-                            <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-blue-500" data-type="edit-card-button" width="16px" height="16px">
-                                <use xlink:href="/public/icons/sprite.svg#icon-edit"></use>
+                            <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-blue-500" data-type="edit-button" width="16px" height="16px">
+                                <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-edit"></use>
                             </svg>
                         </div>
 
                         <div class="p-2 rounded-xl group hover:bg-red-50">
-                            <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-red-500" data-type="delete-card-button" width="16px" height="16px">
-                                <use xlink:href="/public/icons/sprite.svg#icon-delete"></use>
+                            <svg class="icon cursor-pointer fill-[#808080] group-hover:fill-red-500" data-type="delete-button" width="16px" height="16px">
+                                <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-delete"></use>
                             </svg>
                         </div>
                     </div>
