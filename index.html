@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="/src/styles/output.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test</title>
+</head>
+<body class="box-border overflow-x-hidden">
+  <main class="w-dvw min-h-dvh p-16 bg-[#F9FAFB] box-border">
+    <section class="w-full h-full flex flex-col items-center" id="main-section">
+      <header class="w-full flex flex-col items-center mb-8">
+        <h1 class="font-bold text-4xl mb-4">Mis cards</h1>
+        <h2 class="text-xl text-gray-600 text-wrap text-center w-1/2">Organiza tus estudios con tarjetas interactivas. Crea conjuntos, estudia y mejora tu memoria.</h2>
+      </header>
+
+      <div class="w-full flex flex-col items-center mb-16 mt-8">
+        <button class="w-[300px] bg-blue-500 rounded-xl p-4 flex items-center justify-center text-white font-bold text-lg gap-4 cursor-pointer hover:scale-105 transition-transform" id="create-new-set-button">
+          <svg class="icon w-6 h-6" fill="white">
+            <use xlink:href="/public/icons/sprite.svg#icon-add"></use>
+          </svg>
+          Crear nuevo conjunto
+        </button>
+      </div>
+
+      <div class="w-full gap-4 px-16 grid grid-cols-3" id="sets-container">
+        <!-- Aqui van los sets -->
+      </div>
+
+     <div class="w-full flex flex-col items-center justify-center" hidden id="no-sets-message">
+        <svg class="icon" width="80px" height="80px">
+            <use xlink:href="/public/icons/sprite.svg#icon-book"></use>
+        </svg>
+        <h3 class="text-lg mb-0 mt-4 text-gray-600 font-semibold">No tienes conjuntos todavia</h3>
+        <p class="text-md text-gray-400">Comienza creando tu primer conjunto de flashcards</p>
+      </div>
+    </section>
+
+    <section class="w-full h-full flex flex-ol items-center" id="create-set-section" hidden>
+      <div class="px-56 w-full flex flex-col gap-8 items-center justify-center">
+        <header class="w-full flex items-center justify-between">
+          <div class="flex items-center justify-center gap-2 cursor-pointer" id="create-set-section-back">
+            <svg class="icon w-5 h-5">
+              <use xlink:href="/public/icons/sprite.svg#icon-back-arrow"></use>
+            </svg>
+            <span class="text-gray-600 font-semibold">Volver</span>
+          </div>
+
+          <h2 class="font-bold text-2xl mb-4" id="create-set-title">Crear conjunto</h2>
+          <button class="flex gap-4 items-center justify-center rounded-md bg-blue-500 px-3 py-3 text-white font-semibold cursor-pointer hover:scale-105 transition-transform" id="save-set-button">
+            <svg class="icon w-4 h-4">
+                <use xlink:href="/public/icons/sprite.svg#icon-save"></use>
+            </svg>
+            Guardar
+          </button>
+        </header>
+
+        <!-- Este es el form para crear sets -->
+        <form action="/" class="w-full h-[330px] rounded-xl bg-white p-8 flex flex-col gap-4 shadow-sm" id="create-set-form">
+          <h3 class="font-semibold text-lg">Detalles del conjunto</h3>
+
+          <div class="flex flex-col gap-2">
+            <label for="set-name" class="font-semibold text-sm">Nombre del conjunto</label>
+            <input id="set-name-input" class="h-12 rounded-md px-4 py-4 border border-[#f5f5f5] outline-transparent focus:outline-sky-500 transition-colors" type="text" placeholder="Ej. Números binarios">
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <label for="set-description-input" class="font-semibold text-sm">Descripcion <span>(opcional)</span></label>
+            <textarea id="set-description-input" class="h-24 rounded-md px-4 py-2 border border-[#f5f5f5] resize-none outline-transparent focus:outline-sky-500 transition-colors" placeholder="Breve descripcion del conjunto..."></textarea>
+          </div>
+        </form>
+
+        <!-- Este es el contenedor de las previews de las tarjetas y del form para crearlas -->
+        <div class="w-full rounded-xl bg-white p-8 flex flex-col gap-4 shadow-sm font-semibold text-lg">
+          <header class="w-full flex items-center justify-between">
+            <h3>Tarjetas (<span id="cards-count">0</span>)</h3>
+
+            <button class="w-max bg-blue-500 rounded-lg px-4 py-2 font-semibold flex items-center justify-center text-white gap-4 cursor-pointer hover:scale-105 transition-transform text-[0.9em]" id="add-card-button">
+              <svg class="icon h-4 w-4" fill="white">
+                <use xlink:href="/public/icons/sprite.svg#icon-add"></use>
+              </svg>
+              Agregar tarjeta
+            </button>
+          </header>
+
+          <!-- Este es el form que aparece cuando se hace click en agregar tarjeta -->
+          <div class="flex flex-col gap-2 w-full rounded-xl p-4 bg-[#EFF6FF]" id="create-new-card-container" hidden>
+            <h2>Nueva tarjeta</h2>
+
+            <form action="/" class="flex flex-col gap-6 p-4" id="create-preview-card-form">
+              <div class="flex w-full items-center gap-4" id="create-new-card-form">
+                <div class="flex flex-col gap-2">
+                  <label for="front-card" class="text-sm ext-gray-700">Frente</label>
+                  <input type="text" id="front-card-input" class="placeholder:text-sm text-sm pb-16 px-4 w-[390px] h-[120px] max-w-[390px] min-h-[120px] bg-white rounded-xl border border-[#E5E7EB] outline-transparent focus:outline-sky-500 transition-all placeholder:text-gray-400 flex items-start" placeholder="Pregunta o término...">
+                </div>
+  
+                <div class="flex flex-col gap-2">
+                  <label for="back-card" class="text-sm text-gray-700">Reverso</label>
+                  <textarea type="text" id="back-card-textarea" class="placeholder:text-sm text-sm p-4 w-[390px] h-[120px] max-w-[390px] min-h-[120px] bg-white resize-none rounded-xl border border-[#E5E7EB] outline-transparent focus:outline-sky-500 transition-all placeholder:text-gray-400" placeholder="Respuesta o definición..."></textarea>
+                </div>
+              </div>
+
+              <div class="flex gap-4">
+                <button class="w-[100px] bg-blue-500 rounded-xl py-2 px-4 flex items-center justify-center text-white font-semibold cursor-pointer hover:scale-105 transition-transform" data-type="add-button">Agregar</button>
+
+                <button class="w-[100px] bg-[#FFFFFF] text-black rounded-xl py-2 px-4 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform" data-type="cancel-button">Cancelar</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Este es el contenedor de las previews de las cards -->
+          <div class="w-full flex flex-col gap-4" id="cards-preview-container">
+            
+          </div>
+
+          <!-- Este es el mensaje que aparece cuando no hay sets -->
+          <div class="w-full flex flex-col items-center justify-center gap-4 p-12" id="no-cards-message">
+            <svg class="icon h-12 w-12" fill="gray">
+              <use xlink:href="/public/icons/sprite.svg#icon-add"></use>
+            </svg>
+            
+            <h3 class="text-gray-400 text-lg">No hay tarjetas aún. ¡Agrega tu primera tarjeta!</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="w-full h-full flex flex-col items-center relative" id="study-section" hidden>
+      <div class="w-[60%] flex flex-col gap-8 items-center justify-center">
+        <header class="w-full flex items-center justify-center">
+          <div class="flex items-center justify-center gap-2 cursor-pointer" data-type="back-section-button">
+            <svg class="icon w-5 h-5" data-type="back-section-button">
+              <use xlink:href="/public/icons/sprite.svg#icon-back-arrow" data-type="back-section-button"></use>
+            </svg>
+            <span class="text-gray-600 font-semibold" data-type="back-section-button">Volver</span>
+          </div>
+          <h2 class="font-bold text-2xl mb-4 text-center flex-1 mr-24" id="study-card-title">A</h2>
+        </header>
+
+        <div class="w-full flex flex-col gap-2">
+          <div class="w-full flex justify-between">
+            <h3 class="font-semibold text-gray-500">Tarjeta <span id="card-of"></span> de <span id="card-of-total"></span></h3>
+            <p class="font-semibold text-gray-500"><span id="progress-bar-percentage">33</span>%</p>
+          </div>
+          <div class="w-full bg-gray-200 h-2 rounded-xl flex">
+            <div class="w-full flex transition-all h-full bg-blue-500 rounded-xl" id="progress-bar" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <div class="w-full flex flex-col gap-8" id="study-card-container">
+          <div class="w-full flex items-center justify-center">
+            <div class="w-[500px] h-[320px] perspective-[1000px] bg-transparent cursor-pointer group">
+              <div class="w-full h-full transition-all duration-1000 group-hover:rotate-y-180 transform-3d relative rounded-xl shadow-sm">
+                <div class="w-full h-full bg-white border-[#E5E7EB] absolute backface-hidden rounded-xl p-4 flex flex-col items-center justify-center">
+                  <h3 class="font-semibold" data-type="study-front-card-text">Hola</h3>
+                  <p class="text-gray-300 text-sm">Arrastra el mouse para voltear</p>
+                </div>
+                <div class="rotate-y-180 w-full h-full bg-blue-50 border-2 border-blue-200 absolute backface-hidden rounded-xl p-4 flex flex-col items-center justify-center">
+                    <h3 class="font-semibold" data-type="study-back-card-text">Adios</h3>
+                  <p class="text-blue-300 text-sm">Quita el mouse para voltear</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="w-full flex justify-center items-center">
+            <button class="w-[150px] bg-[#FFFFFF] text-black rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 border-1 border-[#E5E7EB] disabled:bg-gray-100 disabled:text-gray-400 disabled:hover:scale-100 disabled:cursor-not-allowed" id="back-card-button" data-type="back-button" disabled>
+              <svg class="icon w-5 h-5 fill-gray-500">
+                <use xlink:href="/public/icons/sprite.svg#icon-back-arrow"></use>
+              </svg>
+              Anterior
+            </button>
+  
+            <div class="flex mx-6">
+              <p class="font-semibold text-gray-400"><span id="card-of-buttons">1</span> / <span id="card-of-total-buttons"></span></p>
+            </div>
+  
+            <button class="w-[150px] bg-blue-500 text-white rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4" id="next-card-button" data-type="next-button">
+              Siguiente
+              <svg class="icon w-5 h-5 fill-white rotate-180">
+                <use xlink:href="/public/icons/sprite.svg#icon-back-arrow"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="w-[440px] h-[360px] flex flex-col items-center justify-between py-8 px-8 bg-white shadow-sm rounded-xl gap-2 absolute left-[35%] top-[30%]" id="finish-study-modal" hidden>
+      <div class="w-full h-[10%] mb-5 flex items-center justify-center text-6xl">🎉</div>
+      <h2 class="font-bold text-2xl">¡Completado!</h2>
+      <p class="text-gray-600">Has terminado de estudiar <span class="font-bold" id="finish-set-name">test.</span> Repasaste <span id="finish-cards-count">3</span> tarjetas.</p>
+
+      <div class="w-full flex flex-col gap-2">
+        <button class="w-full bg-blue-500 text-white rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 disabled:bg-gray-100 disabled:text-gray-400 disabled:hover:scale-100 disabled:cursor-not-allowed" id="study-again-button" data-type="study-again-button">
+          <svg class="icon w-5 h-5 fill-gray-500">
+            <use xlink:href="/public/icons/sprite.svg#icon-restart"></use>
+          </svg>
+          Estudiar de nuevo
+        </button>
+
+        <button class="w-full text-black rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 bg-[#E5E7EB]" id="go-home-button" data-type="home-button">
+          <svg class="icon w-5 h-5 fill-white">
+            <use xlink:href="/public/icons/sprite.svg#icon-house"></use>
+          </svg>
+          Volver al inicio
+      </button>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
