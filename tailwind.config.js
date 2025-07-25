@@ -16,7 +16,8 @@ module.exports = {
     'w-[90%]',
     'w-[100%]',
     {
-      pattern: /max-\[640px\]:.*/,
+      pattern: /max-\[\d+px\]:.*/,
+      variants: ['sm', 'md', 'lg', 'xl'],
     },
   ],
   theme: {
