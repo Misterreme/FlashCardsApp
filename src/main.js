@@ -143,7 +143,7 @@ document.addEventListener("click", (e) => {
         showSection("create-set-section");
         setNameInput.value = set.name;
         setDescriptionInput.value = set.description;
-        if (window.screen.width < 640) {
+        if (window.screen.width < 700) {
             createSetText.textContent  = "";
         } else {
 
@@ -343,7 +343,7 @@ function showSection(id) {
     section.hidden = false;
 
     finishStudyModal.hidden = true;
-    if (window.screen.width < 640) {
+    if (window.screen.width < 700) {
         createSetText.textContent = "";
     };
     resetState();
@@ -664,7 +664,7 @@ function resetState() {
     cardsPreviewContainer.innerHTML = "";
     cardsCount.textContent = cardsPreviewContainer.children.length;
     noCardsMessage.hidden = false;
-    if (window.screen.width < 640) {
+    if (window.screen.width < 700) {
         createSetText.textContent = "";
     } else {
 

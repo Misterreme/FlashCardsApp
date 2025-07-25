@@ -24,11 +24,11 @@
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body class="box-border overflow-x-hidden">
-  <main class="w-dvw min-h-dvh p-16 max-[640px]:p-8 bg-[#F9FAFB] box-border relative">
+  <main class="w-dvw min-h-dvh p-16 max-[700px]:p-8 bg-[#F9FAFB] box-border relative">
 
   <!-- Messages -->
    <!-- Notification Message -->
-    <div class="flex flex-col gap-2 w-72 max-[640px]:w-[80%] max-[640px]:text-xs z-50 fixed top-1-2 left-1/2 -translate-1/2 transition-all max-[640px]:p-2" id="create-set-message" hidden>
+    <div class="flex flex-col gap-2 w-72 max-[700px]:w-[80%] max-[700px]:text-xs z-50 fixed top-1-2 left-1/2 -translate-1/2 transition-all max-[700px]:p-2" id="create-set-message" hidden>
         <div class="succsess-alert cursor-default flex items-center justify-between w-full h-12 sm:h-14 rounded-lg bg-white px-[10px]">
             <div class="flex gap-2">
                 <div class="text-gray-500 bg-[#F9FAFB] backdrop-blur-xl p-1 rounded-lg">
@@ -97,8 +97,8 @@
 
     <section class="w-full h-full flex flex-col items-center" id="main-section">
       <header class="w-full flex flex-col items-center mb-8">
-        <h1 class="font-bold text-4xl mb-4 max-[640px]:text-3xl">FlashCards</h1>
-        <h2 class="w-full text-xl text-gray-600 text-wrap text-center max-[640px]:text-lg">Organiza tus estudios con tarjetas interactivas. Crea conjuntos, estudia y mejora tu memoria.</h2>
+        <h1 class="font-bold text-4xl mb-4 max-[700px]:text-3xl">FlashCards</h1>
+        <h2 class="w-full text-xl text-gray-600 text-wrap text-center max-[700px]:text-lg">Organiza tus estudios con tarjetas interactivas. Crea conjuntos, estudia y mejora tu memoria.</h2>
       </header>
 
       <div class="w-full flex flex-col items-center mb-14 mt-6">
@@ -110,8 +110,8 @@
         </button>
       </div>
 
-      <h2 class="font-bold text-3xl max-[640px]:text-2xl mb-8 text-gray-500">Mis conjuntos (<span id="sets-count"></span>)</h2>
-      <div class="w-full gap-4 px-16 grid grid-cols-3 max-[640px]:flex flex-col items-center justify-center max-[640px]:px-0" id="sets-container">
+      <h2 class="font-bold text-3xl max-[700px]:text-2xl mb-8 text-gray-500">Mis conjuntos (<span id="sets-count"></span>)</h2>
+      <div class="w-full gap-4 px-16 grid grid-cols-3 max-[700px]:flex flex-col items-center justify-center max-[700px]:px-0" id="sets-container">
         <!-- Aqui van los sets -->
       </div>
 
@@ -125,7 +125,7 @@
     </section>
 
     <section class="w-full h-full flex flex-ol items-center" id="create-set-section" hidden>
-      <div class="px-56 max-[640px]:px-0 w-full flex flex-col gap-8 items-center justify-center">
+      <div class="px-56 max-[700px]:px-0 w-full flex flex-col gap-8 items-center justify-center">
         <header class="w-full flex items-center justify-between">
           <div class="flex items-center justify-center gap-2 cursor-pointer" id="create-set-section-back">
             <svg class="icon w-5 h-5">
@@ -134,7 +134,7 @@
             <span class="text-gray-600 font-semibold">Volver</span>
           </div>
 
-          <h2 class="font-bold text-2xl mb-4 max-[640px]:text-xl" id="create-set-title"></h2>
+          <h2 class="font-bold text-2xl mb-4 max-[700px]:text-xl" id="create-set-title"></h2>
           <button class="flex gap-4 items-center justify-center rounded-md bg-blue-500 px-3 py-3 text-white font-semibold cursor-pointer hover:scale-105 transition-transform" id="save-set-button">
             <svg class="icon w-4 h-4">
                 <use xlink:href="/public/icons/sprite.svg#icon-save"></use>
@@ -159,11 +159,11 @@
         </form>
 
         <!-- Este es el contenedor de las previews de las tarjetas y del form para crearlas -->
-        <div class="w-full rounded-xl bg-white p-8 max-[640px]:px-4 flex flex-col gap-4 shadow-sm font-semibold text-lg">
+        <div class="w-full rounded-xl bg-white p-8 max-[700px]:px-4 flex flex-col gap-4 shadow-sm font-semibold text-lg">
           <header class="w-full flex items-center justify-between gap-2">
             <h3>Tarjetas (<span id="cards-count">0</span>)</h3>
 
-            <button class="bg-blue-500 rounded-lg px-4 py-2 font-semibold flex items-center justify-center text-white gap-4 max-[640px]:gap-1 cursor-pointer hover:scale-105 transition-transform text-[0.9em] max-[640px]:text-[0.8em]" id="add-card-button">
+            <button class="bg-blue-500 rounded-lg px-4 py-2 font-semibold flex items-center justify-center text-white gap-4 max-[700px]:gap-1 cursor-pointer hover:scale-105 transition-transform text-[0.9em] max-[700px]:text-[0.8em]" id="add-card-button">
               <svg class="icon h-4 w-4" fill="white">
                 <use xlink:href="/public/icons/sprite.svg#icon-add"></use>
               </svg>
@@ -175,16 +175,16 @@
           <div class="flex flex-col  gap-2 w-full rounded-xl p-4 bg-[#EFF6FF]" id="create-new-card-container" hidden>
             <h2>Nueva tarjeta</h2>
 
-            <form action="/" class="flex flex-col gap-6 p-4 max-[640px]:p-0" id="create-preview-card-form">
-              <div class="flex w-full items-center gap-4 max-[640px]:flex-col" id="create-new-card-form">
+            <form action="/" class="flex flex-col gap-6 p-4 max-[700px]:p-0" id="create-preview-card-form">
+              <div class="flex w-full items-center gap-4 max-[700px]:flex-col" id="create-new-card-form">
                 <div class="w-full flex flex-col gap-2">
                   <label for="front-card" class="text-sm text-gray-700">Frente</label>
-                  <input type="text" id="front-card-input" class="placeholder:text-sm text-sm pb-16 px-4 w-[390px] h-[120px] max-w-[390px] min-h-[120px] max-[640px]:w-[100%] bg-white rounded-xl border border-[#E5E7EB] outline-transparent focus:outline-sky-500 transition-all placeholder:text-gray-400 flex items-start" placeholder="Pregunta o término...">
+                  <input type="text" id="front-card-input" class="placeholder:text-sm text-sm pb-16 px-4 w-[390px] h-[120px] max-w-[390px] min-h-[120px] max-[700px]:w-[100%] bg-white rounded-xl border border-[#E5E7EB] outline-transparent focus:outline-sky-500 transition-all placeholder:text-gray-400 flex items-start" placeholder="Pregunta o término...">
                 </div>
   
                 <div class="w-full flex flex-col gap-2">
                   <label for="back-card" class="text-sm text-gray-700">Reverso</label>
-                  <textarea type="text" id="back-card-textarea" class="placeholder:text-sm text-sm p-4 w-[390px] h-[120px] max-w-[390px] min-h-[120px] max-[640px]:w-[100%] bg-white resize-none rounded-xl border border-[#E5E7EB] outline-transparent focus:outline-sky-500 transition-all placeholder:text-gray-400" placeholder="Respuesta o definición..."></textarea>
+                  <textarea type="text" id="back-card-textarea" class="placeholder:text-sm text-sm p-4 w-[390px] h-[120px] max-w-[390px] min-h-[120px] max-[700px]:w-[100%] bg-white resize-none rounded-xl border border-[#E5E7EB] outline-transparent focus:outline-sky-500 transition-all placeholder:text-gray-400" placeholder="Respuesta o definición..."></textarea>
                 </div>
               </div>
 
@@ -214,15 +214,15 @@
     </section>
 
     <section class="w-full h-full flex flex-col items-center relative" id="study-section" hidden>
-      <div class="w-[60%] max-[640px]:w-1/1 flex flex-col gap-8 items-center justify-center">
-        <header class="w-full flex items-center justify-center max-[640px]:justify-between">
+      <div class="w-[60%] max-[700px]:w-1/1 flex flex-col gap-8 items-center justify-center">
+        <header class="w-full flex items-center justify-center max-[700px]:justify-between">
           <div class="flex items-center justify-center gap-2 cursor-pointer" data-type="back-section-button">
             <svg class="icon w-5 h-5" data-type="back-section-button">
               <use xlink:href="/public/icons/sprite.svg#icon-back-arrow" data-type="back-section-button"></use>
             </svg>
             <span class="text-gray-600 font-semibold" data-type="back-section-button">Volver</span>
           </div>
-          <h2 class="font-bold text-2xl mb-4 text-center flex-1 mr-24 max-[640px]:mr-5 max-[640px]:flex-0 max-[640px]:mb-0" id="study-card-title">A</h2>
+          <h2 class="font-bold text-2xl mb-4 text-center flex-1 mr-24 max-[700px]:mr-5 max-[700px]:flex-0 max-[700px]:mb-0" id="study-card-title">A</h2>
         </header>
 
         <div class="w-full flex flex-col gap-2">
@@ -237,7 +237,7 @@
 
         <div class="w-full flex flex-col gap-8" id="study-card-container">
           <div class="w-full flex items-center justify-center">
-            <div class="w-[500px] h-[320px] max-[640px]:h-[70dvh] perspective-[1000px] bg-transparent cursor-pointer group">
+            <div class="w-[500px] h-[320px] max-[700px]:h-[70dvh] perspective-[1000px] bg-transparent cursor-pointer group">
               <div class="w-full h-full transition-all duration-1000 transform-3d relative rounded-xl shadow-sm" data-type="studying-card-flip">
                 <div class="w-full h-full bg-white border-[#E5E7EB] absolute backface-hidden rounded-xl p-8 flex flex-col items-center justify-center gap-2">
                   <h3 class="font-semibold w-full text-center text-wrap wrap-normal" data-type="study-front-card-text">Hola</h3>
@@ -252,7 +252,7 @@
           </div>
   
           <div class="w-full flex justify-center items-center">
-            <button class="w-[150px] max-[640px]:w-[100px] max-[640px]:text-sm bg-[#FFFFFF] text-black rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 border-1 border-[#E5E7EB] disabled:bg-gray-100 disabled:text-gray-400 disabled:hover:scale-100 disabled:cursor-not-allowed  max-[640px]:gap-1" id="back-card-button" data-type="back-button" disabled>
+            <button class="w-[150px] max-[700px]:w-[100px] max-[700px]:text-sm bg-[#FFFFFF] text-black rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 border-1 border-[#E5E7EB] disabled:bg-gray-100 disabled:text-gray-400 disabled:hover:scale-100 disabled:cursor-not-allowed  max-[700px]:gap-1" id="back-card-button" data-type="back-button" disabled>
               <svg class="icon w-5 h-5 fill-gray-500">
                 <use xlink:href="/public/icons/sprite.svg#icon-back-arrow"></use>
               </svg>
@@ -263,7 +263,7 @@
               <p class="font-semibold text-gray-400"><span id="card-of-buttons">1</span> / <span id="card-of-total-buttons"></span></p>
             </div>
   
-            <button class="w-[150px] max-[640px]:w-[100px] max-[640px]:text-sm bg-blue-500 text-white rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 max-[640px]:gap-1" id="next-card-button" data-type="next-button">
+            <button class="w-[150px] max-[700px]:w-[100px] max-[700px]:text-sm bg-blue-500 text-white rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 max-[700px]:gap-1" id="next-card-button" data-type="next-button">
               Siguiente
               <svg class="icon w-5 h-5 fill-white rotate-180">
                 <use xlink:href="/public/icons/sprite.svg#icon-back-arrow"></use>
@@ -275,10 +275,10 @@
     </section>
 
     <!-- Finish Studyng Set Message -->
-    <div class="w-[440px] h-[360px] max-[640px]:w-[90%] flex flex-col items-center justify-between py-8 px-8 bg-white shadow-sm rounded-xl gap-2 absolute top-1/2 left-1/2 -translate-1/2" id="finish-study-modal" hidden>
+    <div class="w-[440px] h-[360px] max-[700px]:w-[90%] flex flex-col items-center justify-between py-8 px-8 bg-white shadow-sm rounded-xl gap-2 absolute top-1/2 left-1/2 -translate-1/2" id="finish-study-modal" hidden>
       <div class="w-full h-[10%] mb-5 flex items-center justify-center text-6xl">🎉</div>
       <h2 class="font-bold text-2xl">¡Completado!</h2>
-      <p class="text-gray-600 max-[640px]:w-full max-[640px]:text-center">Has terminado de estudiar <span class="font-bold" id="finish-set-name">test.</span> Repasaste <span id="finish-cards-count">3</span> tarjetas.</p>
+      <p class="text-gray-600 max-[700px]:w-full max-[700px]:text-center">Has terminado de estudiar <span class="font-bold" id="finish-set-name">test.</span> Repasaste <span id="finish-cards-count">3</span> tarjetas.</p>
 
       <div class="w-full flex flex-col gap-2">
         <button class="w-full bg-blue-500 text-white rounded-xl px-2 py-3 flex items-center justify-center font-semibold cursor-pointer hover:scale-105 transition-transform gap-4 disabled:bg-gray-100 disabled:text-gray-400 disabled:hover:scale-100 disabled:cursor-not-allowed" id="study-again-button" data-type="study-again-button">
@@ -298,7 +298,7 @@
     </div>
 
     <!-- Warning Card Message -->
-    <div class="w-[500px] max-[640px]:w-[90%] rounded-lg bg-white shadow-[0_8px_24px_rgba(149,157,165,0.2)] overflow-hidden flex flex-col items-start justify-start gap-4 py-6 px-6 box-border justify-self-center top-1/2 left-1/2 -translate-1/2 absolute z-10" id="alert-message">
+    <div class="w-[500px] max-[700px]:w-[90%] rounded-lg bg-white shadow-[0_8px_24px_rgba(149,157,165,0.2)] overflow-hidden flex flex-col items-start justify-start gap-4 py-6 px-6 box-border justify-self-center top-1/2 left-1/2 -translate-1/2 absolute z-10" id="alert-message">
         <div class="w-full flex items-center justify-between">
           <div class="w-full flex items-center justify-center gap-4">
             <div class="w-10 h-10 flex justify-center items-center bg-[#ffa30d48] rounded-full ml-2">
