@@ -38,13 +38,10 @@ const deleteSetMessage = document.getElementById("delete-set-message");
 const deleteCardMessage = document.getElementById("delete-card-message");
 const deleteSetMessageBg = document.getElementById("delete-set-message-bg");
 
-console.log("starting...");
 let isFirstTime = null;
 
 document.addEventListener("DOMContentLoaded", (e) => {
   const firstTime = localStorage.getItem("firstTime") || "";
-  console.log(firstTime);
-  console.log(localStorage.getItem("firstTime"));
 
   if (firstTime === "false") {
     alertMessage.hidden = true;
@@ -204,7 +201,6 @@ document.addEventListener("click", (e) => {
 
     if (editButton) {
         isEditingCard = true;
-        console.log(isEditingCard)
         const cardToEdit = click.closest("[data-type='card']");
         const cardToEditId = Number(cardToEdit.id);
         editingCard = cardToEdit;
@@ -242,8 +238,7 @@ document.addEventListener("click", (e) => {
         cardsToDelete = [];
         cardToDeleteIds = [];
 
-        console.log(isEditingCard)
-        editCard(editingCardId)
+        editCard(editingCardId);
 
         editingCard = null;
         editingCardId = null;
@@ -254,7 +249,6 @@ document.addEventListener("click", (e) => {
     const click = e.target;
     const studyButton = click.closest("[data-type='study-button']");
     if (studyButton) {
-      console.log(studyButton.disabled)
       if (studyButton.disabled === false) {
         studyngSet = click.closest("[data-type='set']");
         studyngSetId = Number(studyngSet.id);
@@ -283,8 +277,7 @@ document.addEventListener("click", (e) => {
         studyngCards = null;
         studyngSetName = null
         currentCardIndex = 0;
-        console.log("Hola")
-    }
+    };
 });
 createNewSetButton.addEventListener("click", (e) => {
   showSection("create-set-section");
@@ -311,7 +304,6 @@ closeAlertMessageButton.addEventListener("click", (e) => {
   alertMessageBg.hidden = true;
   isFirstTime = false;
   localStorage.setItem("firstTime", isFirstTime);
-  console.log(localStorage.getItem("firstTime"));
 });
 
 loadSets();
@@ -557,11 +549,9 @@ function loadCards(setId) {
 
 function editCard(cardId) {
   if (isEditingCard) {
-    console.log(isEditingCard)
     const cards = JSON.parse(localStorage.getItem("cards") || "[]");
     const cardToEdit = cards.find(card => card.id === cardId);
 
-    console.log(editingCard)
     const frontCardText = editingCard.querySelector("[data-type='front-card-text']");
     const backCardText = editingCard.querySelector("[data-type='reverse-card-text']");
 
@@ -573,7 +563,7 @@ function editCard(cardId) {
     localStorage.setItem("cards", JSON.stringify(cards));
     // frontCardText = null;
     // backCardText = null;
-  }
+  };
 };
 
 function studySet() {
