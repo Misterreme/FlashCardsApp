@@ -272,14 +272,14 @@ document.addEventListener("click", (e) => {
         finishCardsCount.textContent = setCards.length;
         showSection("study-section");
 
-        studySet();
+        studySet(studyngSet, studyngSetId, studyngSetName, studyngCards, currentCardIndex);
       };
     };
 
     if (click.matches("#study-again-button")) {
-        showSection("study-section");
-        studySet();
         currentCardIndex = 0;
+        showSection("study-section");
+        studySet(studyngSet, studyngSetId, studyngSetName, studyngCards, currentCardIndex);
     };
 
     if (click.matches("[data-type='back-section-button']")) {
@@ -311,7 +311,13 @@ saveAddCardsButton.forEach(button => {
   });
 });
 goHomeButton.addEventListener("click", (e) => {
-  showSection("main-section");
+    showSection("main-section");
+    isStudyngSet = false;
+    studyngSet = null;
+    studyngSetId = null;
+    studyngCards = null;
+    studyngSetName = null
+    currentCardIndex = 0;
 });
 closeAlertMessageButton.addEventListener("click", (e) => {
   alertMessage.hidden = true;
@@ -592,65 +598,61 @@ function editCard(cardId) {
   };
 };
 
-function studySet() {
-    const currentCard = studyngCards[currentCardIndex];
+function studySet(set, setId, setName, cards, index) {
+    // studySet(studyngSet, studyngSetId, studyngSetName, studyngCards, currentCardIndex);
+    const currentCard = cards[index];
     const frontCardText = document.querySelector("[data-type='study-front-card-text']");
     const backCardtext = document.querySelector("[data-type='study-back-card-text']");
 
     frontCardText.textContent = currentCard.front;
     backCardtext.textContent = currentCard.back;
-    studyCardTitle.textContent = studyngSetName;
+    studyCardTitle.textContent = setName;
 
-    cardOf.textContent = currentCardIndex + 1;
-    cardOfTotal.textContent = studyngCards.length;
-    cardOfButtons.textContent = currentCardIndex + 1;
-    cardOfTotalButtons.textContent = studyngCards.length;
+    cardOf.textContent = index + 1;
+    cardOfTotal.textContent = cards.length;
+    cardOfButtons.textContent = index + 1;
+    cardOfTotalButtons.textContent = cards.length;
     
     const backCardButton = document.getElementById("back-card-button");
     const nextcardButton = document.getElementById("next-card-button");
     
-    backCardButton.disabled = currentCardIndex === 0;
-    let percentage = (100 / studyngCards.length) * (currentCardIndex + 1)
+    backCardButton.disabled = index === 0;
+    let percentage = (100 / cards.length) * (index + 1)
     progressBar.style.width =  `${percentage}%`;
     progressBarPercentage.textContent = parseInt(percentage);
 
     nextcardButton.onclick = () => {
 
-        if (currentCardIndex === studyngCards.length - 1) {
-            progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1); 
+        if (currentCardIndex === cards.length - 1) {
+            progressBar.style.width = (100 / cards.length) * (index + 1); 
             document.getElementById("study-section").hidden = true;
             finishStudyModal.hidden = false;
-            isStudyngSet = false;
-            studyngSet = null;
-            studyngSetId = null;
-            studyngCards = null;
-            studyngSetName = null
-            currentCardIndex = 0;
             studyingCard.classList.remove("rotate-y-180");
 
         } else {
 
             currentCardIndex++;
             nextcardButton.firstChild.textContent = "Siguiente";
-            progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1); 
+            progressBar.style.width = (100 / cards.length) * (index + 1); 
             studyingCard.classList.remove("rotate-y-180");
-            studySet();
+
+            studySet(studyngSet, studyngSetId, studyngSetName, studyngCards, currentCardIndex);
           };
     };
 
     backCardButton.onclick = () => {
         if (currentCardIndex === 0) {
-            progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1);
+            progressBar.style.width = (100 / cards.length) * (index + 1);
             studyingCard.classList.remove("rotate-y-180");
             
         } else {
             currentCardIndex--;
             nextcardButton.firstChild.textContent = "Siguiente";
-            progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1); 
+            progressBar.style.width = (100 / cards.length) * (index + 1); 
             studyingCard.classList.remove("rotate-y-180");
         };
 
-        studySet();
+        studySet(studyngSet, studyngSetId, studyngSetName, studyngCards, currentCardIndex);
     };
 };
 
