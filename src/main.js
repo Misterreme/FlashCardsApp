@@ -27,6 +27,7 @@ const createNewSetButton = document.getElementById("create-new-set-button");
 const createSetSectionBack = document.getElementById("create-set-section-back");
 const saveAddCardsButton = document.querySelectorAll("[data-type='add-button']");
 const goHomeButton = document.getElementById("go-home-button");
+const studyAgainButton = document.getElementById("study-again-button");
 const finishSetName = document.getElementById("finish-set-name");
 const finishCardsCount = document.getElementById("finish-cards-count");
 const setsCount = document.getElementById("sets-count");
@@ -37,6 +38,7 @@ const createSetMessage = document.getElementById("create-set-message");
 const deleteSetMessage = document.getElementById("delete-set-message");
 const deleteCardMessage = document.getElementById("delete-card-message");
 const deleteSetMessageBg = document.getElementById("delete-set-message-bg");
+const studyingCard = document.querySelector("[data-type='studying-card-flip']");
 
 let isFirstTime = null;
 
@@ -141,7 +143,12 @@ document.addEventListener("click", (e) => {
         showSection("create-set-section");
         setNameInput.value = set.name;
         setDescriptionInput.value = set.description;
-        createSetText.textContent = "Editar Conjunto";
+        if (window.screen.width < 640) {
+            createSetText.textContent  = "";
+        } else {
+
+            createSetText.textContent = "Editar Conjunto";
+        };
         loadCards(editingSetId);
     };
 
@@ -269,6 +276,12 @@ document.addEventListener("click", (e) => {
       };
     };
 
+    if (click.matches("#study-again-button")) {
+        showSection("study-section");
+        studySet();
+        currentCardIndex = 0;
+    };
+
     if (click.matches("[data-type='back-section-button']")) {
         showSection("main-section")
         isStudyngSet = false;
@@ -278,6 +291,7 @@ document.addEventListener("click", (e) => {
         studyngSetName = null
         currentCardIndex = 0;
     };
+
 });
 createNewSetButton.addEventListener("click", (e) => {
   showSection("create-set-section");
@@ -305,6 +319,13 @@ closeAlertMessageButton.addEventListener("click", (e) => {
   isFirstTime = false;
   localStorage.setItem("firstTime", isFirstTime);
 });
+studyingCard.addEventListener("click", (e) => {
+    if (!studyingCard.classList.contains("rotate-y-180")) {
+        studyingCard.classList.add("rotate-y-180");
+    } else {
+        studyingCard.classList.remove("rotate-y-180");
+    }
+});
 
 loadSets();
 
@@ -316,8 +337,9 @@ function showSection(id) {
     section.hidden = false;
 
     finishStudyModal.hidden = true;
-
-
+    if (window.screen.width < 640) {
+        createSetText.textContent = "";
+    };
     resetState();
 };
 
@@ -335,7 +357,7 @@ function loadSets() {
         setsContainer.innerHTML =  sets.map(set => {
             const setCard = cards.filter(card => card.setId === set.id);
             return `
-                <div class="max-w-[400px] min-h-[230px] flex flex-col p-6 bg-white rounded-xl gap-4 shadow-sm hover:shadow-lg transition-shadow" id="${set.id}" data-type="set">
+                <div class="max-w-[400px] max-[640px]:w-[100%] min-h-[230px] flex flex-col p-6 bg-white rounded-xl gap-4 shadow-sm hover:shadow-lg transition-shadow" id="${set.id}" data-type="set">
                     <header class="flex items-center justify-between">
                         <h3 class="font-semibold text-lg">${set.name}</h3>
     
@@ -356,7 +378,7 @@ function loadSets() {
                             
                     <p class="text-gray-500">${set.description}</p>
     
-                    <div class="w-[75%] flex items-center gap-6 mb-5">
+                    <div class="w-full justify-start flex items-center gap-6 mb-5">
                         <div class="flex items-center gap-1">
                             <svg class="icon" width="16px" height="16px">
                                 <use xlink:href="./assets/sprite-Dy07MmdU.svg#icon-book"></use>
@@ -430,14 +452,16 @@ function createCard() {
         const newCardPreview = document.createElement("div");
         newCardPreview.setAttribute("data-type", "card");
         newCardPreview.innerHTML = `
-            <div class="w-full border border-[#E5E7EB] rounded-xl p-4 flex gap-20 justify-between items-start hover:bg-[#F9FAFB] transition-colors">
-                <div>
-                    <h3 class="text-sm text-gray-800">Frente</h3>
-                    <p class="text-sm text-gray-400" data-type="front-card-text">${frontCardInput.value}</p>
-                </div>
-                <div>
-                    <h3 class="text-sm text-gray-800">Reverso</h3>
-                    <p class="text-sm text-gray-400" data-type="reverse-card-text">${backCardTextarea.value}</p>
+            <div class="w-full border border-[#E5E7EB] rounded-xl p-4 flex gap-20 max-[640px]:gap-6 max-[640px]:flex-col justify-between items-end hover:bg-[#F9FAFB] transition-colors">
+                <div class="w-full flex max-[640px]:justify-between gap-20 max-[640px]:gap-0">
+                    <div>
+                        <h3 class="text-sm text-gray-800">Frente</h3>
+                        <p class="text-sm text-gray-400" data-type="front-card-text">${frontCardInput.value}</p>
+                    </div>
+                    <div>
+                        <h3 class="text-sm text-gray-800">Reverso</h3>
+                        <p class="text-sm text-gray-400" data-type="reverse-card-text">${backCardTextarea.value}</p>
+                    </div>
                 </div>
     
                 <div class="flex gap-4" data-type="edit-delete-container">
@@ -513,7 +537,8 @@ function loadCards(setId) {
         ${setCards.map(card => {
             return `
             <div data-type="card" data-load="true" id="${card.id}">
-                <div class="w-full border border-[#E5E7EB] rounded-xl p-4 flex gap-20 justify-between items-start hover:bg-[#F9FAFB] transition-colors">
+                <div class="w-full border border-[#E5E7EB] rounded-xl p-4 flex gap-20 max-[640px]:gap-6 max-[640px]:flex-col justify-between items-end hover:bg-[#F9FAFB] transition-colors">
+                <div class="w-full flex max-[640px]:justify-between gap-20 max-[640px]:gap-0">
                     <div>
                         <h3 class="text-sm text-gray-800">Frente</h3>
                         <p class="text-sm text-gray-400" data-type="front-card-text">${card.front}</p>
@@ -522,6 +547,7 @@ function loadCards(setId) {
                         <h3 class="text-sm text-gray-800">Reverso</h3>
                         <p class="text-sm text-gray-400" data-type="reverse-card-text">${card.back}</p>
                     </div>
+                </div>
 
                     <div class="flex gap-4" data-type="edit-delete-container">
                         <div class="p-2 rounded-xl group hover:bg-blue-50">
@@ -600,24 +626,28 @@ function studySet() {
             studyngCards = null;
             studyngSetName = null
             currentCardIndex = 0;
+            studyingCard.classList.remove("rotate-y-180");
 
         } else {
 
             currentCardIndex++;
             nextcardButton.firstChild.textContent = "Siguiente";
             progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1); 
+            studyingCard.classList.remove("rotate-y-180");
             studySet();
           };
     };
 
     backCardButton.onclick = () => {
         if (currentCardIndex === 0) {
-            progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1); 
+            progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1);
+            studyingCard.classList.remove("rotate-y-180");
             
         } else {
             currentCardIndex--;
             nextcardButton.firstChild.textContent = "Siguiente";
             progressBar.style.width = (100 / studyngCards.length) * (currentCardIndex + 1); 
+            studyingCard.classList.remove("rotate-y-180");
         };
 
         studySet();
@@ -632,7 +662,12 @@ function resetState() {
     cardsPreviewContainer.innerHTML = "";
     cardsCount.textContent = cardsPreviewContainer.children.length;
     noCardsMessage.hidden = false;
-    createSetText.textContent = "Crear conjunto";
+    if (window.screen.width < 640) {
+        createSetText.textContent = "";
+    } else {
+
+        createSetText.textContent = "Crear conjunto";
+    };
     createNewCardContainer.hidden = true;
 };
 
