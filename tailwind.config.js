@@ -1,4 +1,5 @@
-export default {
+// tailwind.config.js
+module.exports = {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
@@ -14,6 +15,9 @@ export default {
     'w-[80%]',
     'w-[90%]',
     'w-[100%]',
+    {
+      pattern: /max-\[640px\]:.*/,
+    },
   ],
   theme: {
     extend: {},
